@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basic HTML 5 Layout</title>
+    <style type="text/css">
+
+* {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
+
+       body, h1, h2, p, ul, li {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+
+}
+
+.title {
+    background-color: #03C04A;
+    text-align: center;
+    padding: 35px;
+    color: white;
+}
+
+.title1 {
+    text-align: center;
+    color: white;
+     padding: 20px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #333;
+    color: white;
+}
+.navbar .nav-links {
+    list-style: none;
+    display: flex;
+    fo
+    gap: 15px;
+    margin-right: 50px;
+}
+
+.navbar .nav-links li a {
+    color: white;
+    text-decoration: none;
+    padding: 5px 10px;
+}
+
+main {
+    padding: 10px;
+    max-width: 100%;
+}
+
+section {
+
+    margin: 40px 10px;
+}
+
+h1, h2 {
+    color: #333;
+    padding-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    max-height: 100%;
+    background-color: #333;
+    color: white;
+    margin-top: 20px;
+}
+ul{
+    padding-left: 50px ;
+} 
+    </style>
+
+</head>
+<body>
+	<div class ="title">
+		<h1 class="title1">Welcome to My Website</h1>
+		<p>Building web pages with HTML5</p>
+	</div>
+
+    <header>
+        <nav class="navbar">
+            <ul class="nav-links">
+                <li><a href="home.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="contacts.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <h2>Home</h2>
+            <p>This is the homepage section. Welcome to our website!</p>
+        </section>
+        <section id="about">
+            <h2>About</h2>
+            <p>Learn more about us and what we do.</p>
+        </section>
+        <section id="services">
+            <h2>Services</h2>
+            <ul>
+            	<li>Web Development</li>
+            	<li>Graphic Design</li>
+            	<li>SEO Optimization</li>
+            </ul>
+        </section>
+        <section id="contacat">
+            <h2>Contact</h2>
+            <p>Email: contact@mywebsite.com</p>
+            <br>
+            <p>Phone: +123 456 7</p>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2025 My Website. All rights reserved.</p>
+    </footer>
+</body>
+</html>
+
