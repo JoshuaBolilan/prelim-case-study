@@ -1,0 +1,23 @@
+
+body {
+    background-color: #f8f9fa;
+}
+.sidebar {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    background: #007bff;
+    color: white;
+    padding: 20px;
+}
+.main-content {
+    margin-left: 270px;
+    padding: 20px;
+}
+.table th {
+    background-color:rgb(199, 200, 206);
+    color: black;
+}
+.btn-custom {
+    margin-right: 10px;
+}
