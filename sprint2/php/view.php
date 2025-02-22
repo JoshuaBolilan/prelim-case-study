@@ -52,6 +52,7 @@ $patient = $result->fetch_assoc();
             <tr><th>Temperature</th><td><?= $patient['temperature'] ?> °C</td></tr>
             <tr><th>Weight</th><td><?= $patient['weight'] ?> kg</td></tr>
             <tr><th>Diagnostic Tests</th><td><?= htmlspecialchars($patient['diagnostic_tests']) ?></td></tr>
+      
         </table>
 
         <h3 class="mt-4">Diagnosis</h3>
@@ -59,12 +60,12 @@ $patient = $result->fetch_assoc();
             <tr><th>Primary Diagnosis</th><td><?= htmlspecialchars($patient['diagnosis']) ?></td></tr>
         </table>
 
-        <h3 class="mt-4">Treatment Plan</h3>
-        <table class="table table-bordered">
-            <tr><th>Medications</th><td><?= htmlspecialchars($patient['medications']) ?></td></tr>
-            <tr><th>Therapies</th><td><?= htmlspecialchars($patient['therapies']) ?></td></tr>
-            <tr><th>Follow-up Appointments</th><td><?= htmlspecialchars($patient['follow_ups']) ?></td></tr>
-        </table>
+            <h3 class="mt-4">Treatment Plan</h3>
+            <table class="table table-bordered">
+                <tr><th>Medications</th><td><?= htmlspecialchars($patient['medications']) ?></td></tr>
+                <tr><th>Therapies</th><td><?= htmlspecialchars($patient['therapies']) ?></td></tr>
+                <tr><th>Follow-up Appointments</th><td><?= htmlspecialchars($patient['follow_ups']) ?></td></tr>
+            </table>
     </div>
 </body>
 </html>
