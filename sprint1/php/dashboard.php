@@ -1,18 +1,18 @@
-<?php
-session_start();
-include 'db.php';
+    <?php
+    session_start();
+    include 'db.php';
 
-if (!isset($_SESSION['user_id'])) {
-    header("Location: index.php");
-    exit();
-}
+    if (!isset($_SESSION['user_id'])) {
+        header("Location: index.php");
+        exit();
+    }
 
-$username = $_SESSION['username'];
-$role = $_SESSION['role'];
+    $username = $_SESSION['username'];
+    $role = $_SESSION['role'];
 
-$query = "SELECT * FROM patients";
-$result = $conn->query($query);
-?>
+    $query = "SELECT * FROM patients";
+    $result = $conn->query($query);
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
