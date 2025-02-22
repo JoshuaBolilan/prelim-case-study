@@ -98,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit">Add Patient</button>
         <br><br>
 
-        <a href="dashboard.php">Back to Dashboard</a>
+        <a href="dashboard.php">Back to Dashboard</a> 
 
     </form>
 
