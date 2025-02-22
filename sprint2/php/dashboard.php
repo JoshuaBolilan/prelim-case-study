@@ -3,7 +3,7 @@ session_start();
 include 'db.php';
 
 if (!isset($_SESSION['user_id'])) {
-    header("Location: login.php");
+    header("Location: index.php");
     exit();
 }
 
@@ -33,7 +33,7 @@ $result = $conn->query($query);
             </div>
         
             <a href="add.php" class="btn btn-light">Add Patient</a>
-            <a href="login.php" class="btn btn-danger">Logout</a>
+            <a href="index.php" class="btn btn-danger">Logout</a>
         </div>
         <div class="content">
             <h2>Dashboard</h2>
