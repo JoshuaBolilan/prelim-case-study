@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbname = "soap_system";
 $username = "root";
-$password = ""; // Set your MySQL password if needed
+$password = "Logitech08"; // Set your MySQL password if needed
 
 $conn = new mysqli($host, $username, $password, $dbname);
 
