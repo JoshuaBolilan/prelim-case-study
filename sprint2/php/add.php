@@ -5,7 +5,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name = $_POST['name'];
     $age = $_POST['age'];
     $gender = $_POST['gender'];
-    $symptoms = $_POST['symptoms']
+    $symptoms = $_POST['symptoms'];
     $medical_history = $_POST['medical_history'];
     $blood_pressure = $_POST['blood_pressure'];
     $heart_rate = $_POST['heart_rate'];
