@@ -1,34 +1,45 @@
 <?php
 session_start();
-require 'db.php';
+include 'db.php';
 
-if ($_SERVER["REQUEST_METHOD"] === "POST") {
+$error = $success = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = trim($_POST['username']);
-    $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
+    $password = $_POST['password'];
     $role = $_POST['role'];
 
-    // Check if username already exists
-    $stmt = $conn->prepare("SELECT 1 FROM users WHERE username = ?");
-    $stmt->bind_param("s", $username);
-    $stmt->execute();
-    $stmt->store_result();
-
-    if ($stmt->num_rows > 0) {
-        $message = "Username already exists.";
-        $msg_class = "alert-danger";
+    // Input validation
+    if (empty($username) || empty($password) || empty($role)) {
+        $error = "All fields are required.";
+    } elseif (strlen($password) < 6) {
+        $error = "Password must be at least 6 characters long.";
     } else {
-        $stmt = $conn->prepare("INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $password, $role);
+        // Check if the username already exists
+        $checkQuery = "SELECT * FROM users WHERE username = ?";
+        $checkStmt = $conn->prepare($checkQuery);
+        $checkStmt->bind_param("s", $username);
+        $checkStmt->execute();
+        $result = $checkStmt->get_result();
 
-        if ($stmt->execute()) {
-            $message = "Registration successful! <a href='index.php'>Login here</a>";
-            $msg_class = "alert-success";
+        if ($result->num_rows > 0) {
+            $error = "Username already exists. Please choose another.";
         } else {
-            $message = "Error: " . $stmt->error;
-            $msg_class = "alert-danger";
+            // Hash password securely
+            $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+            // Insert user into the database
+            $query = "INSERT INTO users (username, password_hash, role) VALUES (?, ?, ?)";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("sss", $username, $hashedPassword, $role);
+
+            if ($stmt->execute()) {
+                $success = "Registration successful! <a href='index.php' class='alert-link'>Login here</a>";
+            } else {
+                $error = "Error: " . $stmt->error;
+            }
         }
     }
-    $stmt->close();
 }
 ?>
 
@@ -46,9 +57,15 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <div class="col-md-5">
                 <div class="card shadow-lg p-4">
                     <h2 class="text-center mb-4">User Registration</h2>
-                    <?php if (!empty($message)) : ?>
-                        <div class="alert <?php echo $msg_class; ?>"> <?php echo $message; ?> </div>
+
+                    <?php if ($error) : ?>
+                        <div class="alert alert-danger"><?php echo $error; ?></div>
                     <?php endif; ?>
+                    
+                    <?php if ($success) : ?>
+                        <div class="alert alert-success"><?php echo $success; ?></div>
+                    <?php endif; ?>
+
                     <form action="register.php" method="POST">
                         <div class="mb-3">
                             <label class="form-label">Username:</label>
@@ -57,18 +74,20 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         <div class="mb-3">
                             <label class="form-label">Password:</label>
                             <input type="password" name="password" class="form-control" required>
+                            <small class="text-muted">At least 6 characters long.</small>
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Role:</label>
-                            <select name="role" class="form-control" required>
-                                <option value="Doctor">Doctor</option>
-                                <option value="Nurse">Nurse</option>
+                            <select name="role" class="form-select" required>
+                                <option value="doctor">Doctor</option>
+                                <option value="nurse">Nurse</option>
                             </select>
                         </div>
                         <div class="d-grid">
                             <button type="submit" class="btn btn-primary">Register</button>
                         </div>
                     </form>
+                    <p class="text-center mt-3">Already have an account? <a href="index.php">Login here</a></p>
                 </div>
             </div>
         </div>
